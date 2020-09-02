@@ -11,10 +11,7 @@ const app = (
   </BrowserRouter>
 );
 
-ReactDOM.render(
-  <React.StrictMode>
-    app
-  </React.StrictMode>,
+ReactDOM.render(app,
   document.getElementById('root')
 );
 
