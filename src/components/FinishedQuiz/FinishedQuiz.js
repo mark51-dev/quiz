@@ -13,16 +13,6 @@ const FinishedQuiz = props => {
   return (
     <div className={classes.FinishedQuiz}>
       <ul>
-        {/*<li>*/}
-        {/*  <strong>1. </strong>*/}
-        {/*  How are you*/}
-        {/*  <i className={'fa fa-times ' + classes.error}/>*/}
-        {/*</li>*/}
-        {/*<li>*/}
-        {/*  <strong>1. </strong>*/}
-        {/*  How are you*/}
-        {/*  <i className={'fa fa-check ' + classes.success}/>*/}
-        {/*</li>*/}
         { props.quiz.map((quizItem, index) => {
           const cls = [
             'fa',
