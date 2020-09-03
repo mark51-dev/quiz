@@ -5,6 +5,7 @@ import Input from "../../components/UI/Input/Input";
 import Select from "../../components/UI/Select/Select";
 import {createControl, validate, validateForm} from "../../form/formFramework";
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
+import axios from '../../axios/axios-quiz';
 
 function createOptionControl(number) {
   return createControl({
@@ -40,9 +41,19 @@ export default class QuizCreator extends Component {
     e.preventDefault();
   };
 
-  createQuizHandler = e => {
+  createQuizHandler =  async e => {
     e.preventDefault();
-    console.log(this.state.quiz);
+    try {
+      await axios.post('/quizes.json', this.state.quiz);
+      this.setState({
+        quiz: [],
+        isFormValid: false,
+        rightAnswerId: 1,
+        formControls: createFormControls()
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   changeHandler = (value, controlName) => {
@@ -79,10 +90,10 @@ export default class QuizCreator extends Component {
       id: index,
       rightAnswerId: this.state.rightAnswerId,
       answers: [
-        { text: option1.value, id: this.state.formControls.option1.id },
-        { text: option2.value, id: this.state.formControls.option2.id },
-        { text: option3.value, id: this.state.formControls.option3.id },
-        { text: option4.value, id: this.state.formControls.option4.id }
+        {text: option1.value, id: this.state.formControls.option1.id},
+        {text: option2.value, id: this.state.formControls.option2.id},
+        {text: option3.value, id: this.state.formControls.option3.id},
+        {text: option4.value, id: this.state.formControls.option4.id}
       ],
     };
     quiz.push(questionItem);
